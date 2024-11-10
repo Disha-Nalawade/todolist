@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .displayName {
+        border: 1px solid black;
+        border-radius: 20px;
+        width: 200px;
+        margin: 15px;
+        padding: 8px;
+        font-size: 14px;
+      }
+      .searchBox {
+        width: 250px;
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 10px;
+        cursor: pointer;
+      }
+      .btn {
+        padding: 10px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>To Do List</h1>
+    <div>
+      <input
+        type="text"
+        class="searchBox"
+        id="searchBox"
+        placeholder="Enter your task"
+      />
+      <button type="button" class="btn" onclick="addItem()">Add in List</button>
+      <button type="button" class="btn" onclick="remove()">Remove</button>
+    </div>
+    <div class="studBook" id="studBook"></div>
+    <script>
+      const todolist = ["Wake-up eary", "Exercise", "Coding", "Assignment"];
+
+      function loaditem() {
+        const stud = document.getElementById("studBook");
+        stud.innerHTML = "";
+        for (i = 0; i < todolist.length; i++) {
+          stud.innerHTML += `<div class="displayName">${i + 1}) ${
+            todolist[i]
+          }</div>`;
+        }
+      }
+      loaditem();
+      const todoinput = document.getElementById("searchBox");
+
+      function addItem() {
+        todolist.push(todoinput.value);
+        todoinput.value = "";
+        loaditem();
+      }
+      function remove() {
+        const studIndex = todolist.indexOf(todoinput.value);
+        todolist.splice(studIndex, 1);
+        loaditem();
+      }
+    </script>
+  </body>
+</html>
